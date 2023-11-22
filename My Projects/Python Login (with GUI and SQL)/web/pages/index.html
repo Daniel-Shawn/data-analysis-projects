@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <script type="javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="../resources/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,400;0,500;0,600;0,800;1,500&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,700;1,400;1,500&family=Roboto+Condensed:ital,wght@0,300;0,400;1,400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+    <!-- preloader section start -->
+    <!-- <section class="loader-body" id="loader-body">
+        <section class="loader">
+            <div class="loader-item"></div>
+            <div class="loader-item"></div>
+            <div class="loader-item"></div>
+        </section>
+        <h3>loading webpage...</h3>
+        <h2>If you're seeing this message then its been a while. Check your network connection</h2>
+        <img src="../resources/plug-circle-exclamation.svg">
+    </section> -->
+    <!-- preloader section end -->
+
+
+    <div class="login">
+        <h2>Login</h2>
+        <div class="data">
+            <div>
+                <input placeholder="Please enter your email" type="email" name="email" id="email">
+            </div>
+            <div>
+                <input placeholder="Please enter your password" type="password" name="password" id="password">
+            </div>
+            <span class="feed" id="feed">Wrong Username or Password!</span>
+            <div class="loginBtn">
+                <button class="submitBtn" id="submitBtn">Log In</button>
+            </div>
+        </div>
+        <p>Dont have an account? <a href="signup.html">Sign Up</a> here today!</p>
+        <p>Copyright <span id="dateSpan"></span></p>
+    </div>
+
+
+    <script>
+        let dateSpan = document.getElementById('dateSpan')
+        let email = document.getElementById('email')
+        let password = document.getElementById('password')
+        let btn = document.getElementById('submitBtn')
+        let feedHub = document.getElementById('feed')
+
+        /* window.addEventListener("load", function(){
+            const loaderBody = document.getElementById("loader-body")
+            loaderBody.className += " loader-hidden"
+        }) */
+
+
+        //user login
+        function btnlogin(){
+            let username = email.value
+            let userpassword = password.value
+            eel.btnLogin(username, userpassword)
+        }
+
+        btn.addEventListener('click', btnlogin())
+
+        //login data response
+        eel.expose(login_return)
+        function login_return(status){
+            if (status == 'success'){
+                location.href = 'admin.html'
+            }
+            else {
+                feedHub.classList.add('show')
+                setTimeout(function(){
+                    feedHub.classList.remove('show')
+                }, 3000)
+            }
+        }
+
+
+
+
+        ;
+    </script>
+</body>
+</html>
